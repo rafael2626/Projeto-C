@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1606304179 source:c:\users\rafa\desktop\disciplinas\fp\projeto\main.c
+	<stdio.h>
+	<stdlib.h>
+

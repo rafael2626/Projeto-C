@@ -1,5 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <math.h>
+#include <ctype.h>
 #define TOTALQUESTIONARIOS 1000
 #define QUESTIONARIOSESCOLA 200
 #define MAX_TEXTO 50
@@ -7,13 +10,19 @@
 typedef struct  //ESTRUTURA LIMITE DE 1000 QUESTIONARIOS 200 POR ESCOLA
 {
     int id_questionario[TOTALQUESTIONARIOS];
+    int id_escola[TOTALQUESTIONARIOS];
+    int dia[TOTALQUESTIONARIOS];
+    int mes[TOTALQUESTIONARIOS];
+    int ano[TOTALQUESTIONARIOS];
+    int hora[TOTALQUESTIONARIOS];
+    int minutos[TOTALQUESTIONARIOS];
     int idade[TOTALQUESTIONARIOS];
     char genero[TOTALQUESTIONARIOS];
     char local_residencia[TOTALQUESTIONARIOS];
     char tipo_participante[TOTALQUESTIONARIOS];         //SE È (DOCENTE,ESTUDANTE,FUNCIONÁRIO OU INVESTIGADOR)
     char contacto_covid[TOTALQUESTIONARIOS];            //SE A PRESSOA TEVE EM CONTACTO COM ALGUEM COM COVID (SIM/NAO/DESCONHECIDO)
     char sintomas[TOTALQUESTIONARIOS][MAX_TEXTO];       //QUE SINTOMAS A PESSOA A SER QUESTIONADA TEM (DIFICULDADE RESPIRATORIA,,DOR MUSCULAR,FADIGA,FALTA DE PALADAR,NÁUSEAS e TOSSE)
-    char doença_risco[TOTALQUESTIONARIOS][MAX_TEXTO];//DOENÇAS DE RISCO (AUTOIMUNE,CANCRO,CARDIOVASCULAR,DIABETES,HIPERTENSÃO,OBESIDADE,OBESIDADE,RENAL,RESPIRATÓRIA)
+    char doenca_risco[TOTALQUESTIONARIOS][MAX_TEXTO];  //DOENÇAS DE RISCO (AUTOIMUNE,CANCRO,CARDIOVASCULAR,DIABETES,HIPERTENSÃO,OBESIDADE,OBESIDADE,RENAL,RESPIRATÓRIA)
     int temperatura[TOTALQUESTIONARIOS];
 } t_questionario;
 
@@ -23,9 +32,9 @@ typedef struct  //ESTRUTURA LIMITE DE 1000 QUESTIONARIOS 200 POR ESCOLA
 
 typedef struct
 {
-    int idescola[];
-    char nomeescola[];   //ESCOLAS (ESECS,ESTG,ESAD,ESTM,ESS)
-    char localidade[];
+    int idescola[TOTALQUESTIONARIOS];
+    char nomeescola[TOTALQUESTIONARIOS];   //ESCOLAS (ESECS,ESTG,ESAD,ESTM,ESS)
+    char localidade[TOTALQUESTIONARIOS];
 } t_escola;
 
 
@@ -47,54 +56,46 @@ typedef struct contagio_baixo
     char contacto_com_pessoa_infetada[MAX_TEXTO];
     char sintomas[MAX_TEXTO];
     char sem_doenca[MAX_TEXTO];
-    t_baixo
-};
+}   t_baixo;
 
-t_questionario criar_idade(int idade_existentes);
-int inserir_idade(int idade_existente, t_questionario/**/ [] );
-void consultar_idade(int idade_existentes,  t_questionario idade[]);
-void gravar_idade_em_ficherio(t_questionario[], int idades_existentes, char nome[]);
-int ler_idade_de_ficheiro(t_questionario[], char nome_ficheiro[]);
+//LIMPA A CONSOLA E BUFFER
+void limpar_consola(void);
+//FUNCAO QUE FAZ SAIR DO PROGRAMA
+void Sair(void);
 
-
-t_questionario criar_genero(char genero_existentes);
-int inserir_idade(char idade_existente, t_questionario [] );
-void consultar_genero(char  generos_existentes,  t_questionario genero[]);
-void gravar_genero_em_ficherio(t_questionario[], char generos_existentes, char nome[]);
-int ler_idade_de_ficheiro(t_questionario[], char nome_ficheiro[]);
-
-
-t_questionario criar local_de_residencia(char local_de_residencia_existentes);
-int inserir_local_de_residencia(char local_de_residencia_)
-
-
-int menu_principal(void);
+void menu_principal(int contador_ESECS,int contador_ESTG,int contador_ESAD,int contador_ESTM,int contador_ESS);
 int menu_genero(void);
 int menu_tipo_de_participante(void);
 int menu_contacto_com_pessoa_infetada(void);
 int menu_sintomas(void);
 int menu_doencas(void);
+void menu_principal_opcao(void);
 
 char local_residencia[TOTALQUESTIONARIOS];
 char tipo_participante[TOTALQUESTIONARIOS];         //SE È (DOCENTE,ESTUDANTE,FUNCIONÁRIO OU INVESTIGADOR)
 char contacto_covid[TOTALQUESTIONARIOS];
 
 
-Conta_t criar_conta(int contas_existentes);
-int inserir_conta(int contas_existentes, Conta_t contas[]);
-void consultar_contas(int contas_existentes, Conta_t contas[]);
-void gravar_contas_em_ficheiro(Conta_t contas[], int contas_existentes, char nome_ficheiro[]);
-int ler_contas_de_ficheiro(Conta_t contas[], char nome_ficheiro[]);
+//ESTAS VARIAVEIS SERVEM PARA CONTAR OS TESTES DE CADA ESCOLA;
+int contador_ESECS=0;
+int contador_ESTG=0;
+int contador_ESAD=0;
+int contador_ESTM=0;
+int contador_ESS=0;
 
-
-
-
-
-
-
-
-
-
+//FUNCAO QUE LIMPA A CONSOLA E BUFFER
+void limpar_consola()
+{
+    printf("\n\n\n\n\n\n\n\n\n\n\n\n\n");
+    fflush(stdin);
+}
+                //FUNCAO MAIN
+int main()
+{
+    menu_principal(contador_ESECS,contador_ESTG,contador_ESAD,contador_ESTM,contador_ESS);
+    menu_principal_opcao();
+    return 0;
+}
 
 
 
@@ -147,46 +148,99 @@ void quetionario();
 */
 
 
-int main()
-{
-    int opcao;
-    do
-    {
-        opcao=menu_principal();
-        switch(opcao);
-    case 1:
-        do
-        {
-          // meter funcao dentro de uma funcao
-        }
-        break;
-    }
-    while
-    return 0;
-}
 
+/**
 void Escola
 {
 
-}
-int menu_principal(void);
+}**/
+void menu_principal(int contador_ESECS,int contador_ESTG,int contador_ESAD,int contador_ESTM,int contador_ESS)
 {
 
     // 1-menu principal 2-menu inserir e consultar
-    printf("1- Idade do Participante:\n");
-    printf("2- Genero do Participante:\n");
-    printf("3- Local de Residencia:\n");
-    printf("4- Tipo de Participante:\n");
-    printf("5- Nos ultimos 15 dias esteve em contacto com pessoa infetada com COVID-19?\n");
-    printf("6- Que sintomas sente\n");
-    printf("7-Que doencas tem?\n");
+    printf("1- Registar e Consultar os dados das Escolas\n");
+    printf("2- Registar e Consultar os dados dos Questionarios\n\n");
+    printf("Estatisticas:\n");
+    printf("Total de inqueritos Respondido pos escolas:\n\n");
+    printf("\tESECS:%d/200 \n",contador_ESECS);
+    printf("\tESTG:%d/200 \n",contador_ESTG);
+    printf("\tESAD:%d/200 \n",contador_ESAD);
+    printf("\tESTM:%d/200 \n",contador_ESTM);
+    printf("\tESS:%d/200 \n\n",contador_ESS);
+    printf("3- Total de inqueritos por genero e idade\n"); //FAIXA ETARIA (18-23; 24-30; 31-40; 41-50; 51-65; +66)
+    printf("4 - Percentagem de inqueritos por nivel de risco de contagio\n");
+    printf("5 - Guardar ou Ler dados de ficheiro binario\n");
+    printf("6 - Sair\n");
+
+    return;
 }
-int menu_genero(void);
+
+void menu_principal_opcao(void){
+int opcao;
+do{
+    scanf("%d",&opcao);
+
+    switch(opcao)
+    {
+        case 1://MENU REGISTAR E CONSULTAR OS DADOS DAS ESCOLAS
+        break;
+
+        case 2://MENU REGISTAR E CONSULTAR OS DADOS DOS QUESTIONARIOS
+        break;
+
+        case 3://MENU TOTAL DE INQUERITOS POR GENERO E IDADE
+        break;
+
+        case 4://MENU?? PERCENTAGEM DE INQUERITOS POR NIVEL DE RISCO DE CONTAGIO
+        break;
+
+        case 5://MENU GUARDAR OU LER DADOS DE FICHEIROS BINARIOS
+        break;
+
+        case 6:
+             Sair();
+         break;
+
+        default:
+            printf("Opção invalida!");
+        break;
+    }
+    }while(opcao!=1 || opcao!=2 || opcao!=3 || opcao!=4 || opcao!=5 || opcao!=6);
+    return;
+}
+
+void Sair(void)
+{
+    char confirmacao;
+do{
+        printf("Tem a certeza que pretende sair? (S/N)\n");
+        fflush(stdin);
+        scanf("%c",&confirmacao);
+        confirmacao=toupper(confirmacao);
+
+        if(confirmacao=='S'){
+            exit(0);
+        }
+
+        else if(confirmacao=='N'){
+             menu_principal(contador_ESECS,contador_ESTG,contador_ESAD,contador_ESTM,contador_ESS);
+             limpar_consola();
+             return;
+        }
+
+        else if(confirmacao!='S' ||confirmacao!='N'){
+                printf("Opcao Invalida so pode escolher S/N");
+        }
+}while(confirmacao!='S' || confirmacao!='N');
+return;
+}
+
+int menu_genero(void)
 {
     printf("(M)asculino\n");
     printf("(F)emenino\n");
 }
-int menu_tipo_de_participante(void);
+int menu_tipo_de_participante(void)
 {
     printf("1.Docente\n");
     printf("2.Estudante\n");
@@ -194,13 +248,15 @@ int menu_tipo_de_participante(void);
     printf("4.Investigador\n");
 
 }
-int menu_contacto_com_pessoa_infetada(void);
+
+int menu_contacto_com_pessoa_infetada(void)
 {
     printf("(S)im\n");
     printf("(N)ao\n");
     printf("(D)esconhecido\n");
 }
-int menu_sintomas(void);
+
+int menu_sintomas(void)
 {
     printf("1.Dificuldade respiratoria\n");
     printf("2.Dor Muscular\n");

@@ -70,6 +70,7 @@ int menu_contacto_com_pessoa_infetada(void);
 int menu_sintomas(void);
 int menu_doencas(void);
 void menu_principal_opcao(void);
+int menu_idade(void);
 
 char local_residencia[TOTALQUESTIONARIOS];
 char tipo_participante[TOTALQUESTIONARIOS];         //SE È (DOCENTE,ESTUDANTE,FUNCIONÁRIO OU INVESTIGADOR)
@@ -89,7 +90,7 @@ void limpar_consola()
     printf("\n\n\n\n\n\n\n\n\n\n\n\n\n");
     fflush(stdin);
 }
-                //FUNCAO MAIN
+//FUNCAO MAIN
 int main()
 {
     menu_principal(contador_ESECS,contador_ESTG,contador_ESAD,contador_ESTM,contador_ESS);
@@ -175,66 +176,133 @@ void menu_principal(int contador_ESECS,int contador_ESTG,int contador_ESAD,int c
     return;
 }
 
-void menu_principal_opcao(void){
-int opcao;
-do{
-    scanf("%d",&opcao);
-
-    switch(opcao)
+void menu_principal_opcao(void)
+{
+    int opcao = menu_principal();
+    do
     {
-        case 1://MENU REGISTAR E CONSULTAR OS DADOS DAS ESCOLAS
-        break;
+        scanf("%d",&opcao);
 
-        case 2://MENU REGISTAR E CONSULTAR OS DADOS DOS QUESTIONARIOS
-        break;
+        switch(opcao)
+        {
+        case 1:
+
+            while(/*1*/); //MENU REGISTAR E CONSULTAR OS DADOS DAS ESCOLAS
+            break;
+
+        case 2:
+            //MENU REGISTAR E CONSULTAR OS DADOS DOS QUESTIONARIOS
+            do
+            {
+                switch(questionario);
+                {
+                //idade
+                case 1:
+                    do
+                    {
+                        switch(menu_idade);
+                        {
+                        //inserir
+                        case 1:
+                            break;
+                        //consultar
+                        case 2:
+                            break;
+                        }
+                    }
+                    while();
+                    printf
+                    break;
+                case 2:
+                    switch(menu_genero);
+                    {
+                    case 1:
+                        break;
+                    case 2:
+                        break;
+                    }
+                    break;
+                case 3 (local_residencia);
+                    break;
+                case 4 (tipo_participante)
+                        break;
+                case 5 (menu_contacto_com_pessoa_infetada);
+                    break;
+                case 6 menu_sintomas;
+                    break;
+                case 7 menu_doencas;
+                    break;
+                }
+            }
+            break;
 
         case 3://MENU TOTAL DE INQUERITOS POR GENERO E IDADE
-        break;
+            break;
 
         case 4://MENU?? PERCENTAGEM DE INQUERITOS POR NIVEL DE RISCO DE CONTAGIO
-        break;
+            break;
 
         case 5://MENU GUARDAR OU LER DADOS DE FICHEIROS BINARIOS
-        break;
+            break;
 
         case 6:
-             Sair();
-         break;
+            Sair();
+            break;
 
         default:
             printf("Opção invalida!");
-        break;
+            break;
+        }
     }
-    }while(opcao!=1 || opcao!=2 || opcao!=3 || opcao!=4 || opcao!=5 || opcao!=6);
+    while(opcao!=1 || opcao!=2 || opcao!=3 || opcao!=4 || opcao!=5 || opcao!=6);
     return;
 }
 
 void Sair(void)
 {
     char confirmacao;
-do{
+    do
+    {
         printf("Tem a certeza que pretende sair? (S/N)\n");
         fflush(stdin);
         scanf("%c",&confirmacao);
         confirmacao=toupper(confirmacao);
 
-        if(confirmacao=='S'){
+        if(confirmacao=='S')
+        {
             exit(0);
         }
 
-        else if(confirmacao=='N'){
-             menu_principal(contador_ESECS,contador_ESTG,contador_ESAD,contador_ESTM,contador_ESS);
-             limpar_consola();
-             return;
+        else if(confirmacao=='N')
+        {
+            menu_principal(contador_ESECS,contador_ESTG,contador_ESAD,contador_ESTM,contador_ESS);
+            limpar_consola();
+            return;
         }
 
-        else if(confirmacao!='S' ||confirmacao!='N'){
-                printf("Opcao Invalida so pode escolher S/N");
+        else if(confirmacao!='S' ||confirmacao!='N')
+        {
+            printf("Opcao Invalida so pode escolher S/N");
         }
-}while(confirmacao!='S' || confirmacao!='N');
-return;
+    }
+    while(confirmacao!='S' || confirmacao!='N');
+    return;
 }
+int questionario(void)
+{
+    printf("1.Idade do Participante\n");
+    printf("2.Genero\n");
+    printf("3.Local de Residencia\n");
+    printf("4. Tipo de Participante\n");
+    printf("5.Nos últimos 15 dias esteve em contacto com pessoa infetada com COVID-19\n");
+    printf("6.Que sintomas sente (0 para terminar)\n");
+    printf("7.Que doenças tem (0 para terminar)")
 
+}
+int menu_idade(void)
+{
+    printf("Idade do Participante\n");
+}
 int menu_genero(void)
 {
     printf("(M)asculino\n");
@@ -246,7 +314,6 @@ int menu_tipo_de_participante(void)
     printf("2.Estudante\n");
     printf("3.Funcionario\n");
     printf("4.Investigador\n");
-
 }
 
 int menu_contacto_com_pessoa_infetada(void)
@@ -281,14 +348,30 @@ int menu_doencas(void)
 }
 /*inserir e consultar menus*/
 
+int menu_inserir_registar_genero(void)
+{
+    printf("1.Inserir genero\n");
+    printf("2.Consultar genero\n");
+}
+int menu_inserir_tipo_de_participante(void)
+{
+    printf("1.Inserir tipo de participante\n");
+    printf("2.Consultar tipo de participante\n");
+}
+int  menu_inserir_sintomas(void)
+{
+    printf("1.Inserir sintomas\n");
+    printf("2.Consultar sintomas\n");
+}
+int menu_inserir_doencas(void)
+{
+    printf("1.Inserir doencas\n");
+    printf("2.Consultar coencas\n");
+}
 
 
 
-
-
-
-/*
-void inserir_idade(void);
+int inserir_idade(void);
 {
     do
     {
@@ -302,12 +385,12 @@ void inserir_idade(void);
 void inserir_genero(void);
 {
 
-
+    char sexo;
     do
     {
-        char sexo;
         printf("Introduza o seu genero");
-        scanf("%c", );
+        scanf("%c",&sexo);
+        fflush(stdin);
         switch(sexo)
         {
         case 'F':
@@ -315,51 +398,118 @@ void inserir_genero(void);
         case 'M':
             break;
         default:
+        }
+        printf("Opcao invalida");
+    }
+    while(sexo != 'F' &&  sexo !='M');
+
+    void menu_tipo_de_participante(void);
+    {
+        int tipo_de_participante;
+        do
+        {
+            switch(tipo_participante);
+            {
+                case 1:
+                    printf("Docente\n");
+                    break;
+                case 2:
+                    printf("Estudante\n");
+                    break;
+                case 3:
+                    printf("Funcionario\n");
+                    break;
+                case 4:
+                    printf("Investigador\n");
+            }
+            while(tipo_participante <  4 && tipo_participante <= 0);
             printf("Opcao invalida");
         }
-        while(sexo != 'F' &&  sexo !='M');
-
     }
-}
-void menu_opcoes(void);
-{
-    int perguntas;
-    do
+    void menu_contacto_com_pessoa_infetada()
     {
-        switch(perguntas)
+        char opcao;
+        do
         {
-        case  1 :
-            inserir_idade();
-            break;
-        case 2 :
-            inserir_genero();
-            break;
-        case 3 :
-            inserir_residencia();
-            break;
-        case 4 :
-            inserir_tipo_participante();
-            break;
-        case 5 :
-            inserir_dias();
-            break;
-        case 6 :
-            inserir_sintomas();
-            break;
-        case 7 :
-            break;
-        default:
-            printf("Opcao Inválida");
+        switch(opcao);
+            case 'S':
+                break;
+            case 'N':
+                break;
+            case 'D':
+                break;
         }
+        while(opcao != 'S' && != 'N' != 'D');
+        printf("Opcao inválida");
     }
-    while(perguntas > 0 && perguntas < 9);
-    printf("Opcao invalida");
-}
-void inserir_residencia(void);
-{
-    char residencia[30];
-    printf("Introduza a sua residencia");
-    scanf("%c", &residencia);
-}
-void inser
-*/
+
+
+    void menu_sintomas(void)
+    {
+        int opcao;
+        do
+        {
+            switch(opcao)
+            {
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            case 5:
+                break;
+            case 6:
+                break;
+            case 7:
+                break;
+            }
+          while()
+        }
+        while()
+        }
+    void menu_opcoes(void);
+    /*
+    {
+        int perguntas;
+        do
+        {
+            switch(perguntas)
+            {
+            case  1 :
+                inserir_idade();
+                break;
+            case 2 :
+                inserir_genero();
+                break;
+            case 3 :
+                inserir_residencia();
+                break;
+            case 4 :
+                inserir_tipo_participante();
+                break;
+            case 5 :
+                inserir_dias();
+                break;
+            case 6 :
+                inserir_sintomas();
+                break;
+            case 7 :
+                break;
+            default:
+                printf("Opcao Inválida");
+            }
+        }
+        while(perguntas > 0 && perguntas < 9);
+        printf("Opcao invalida");
+    }
+    void inserir_residencia(void);
+    {
+        char residencia[30];
+        printf("Introduza a sua residencia");
+        scanf("%c", &residencia);
+    }
+    void inser
+    */

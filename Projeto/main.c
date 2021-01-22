@@ -64,41 +64,77 @@ void limpar_consola(void);
 //FUNCAO QUE FAZ SAIR DO PROGRAMA
 void Sair(void);
 
-//MENUS
+/** COMEÇO MENUS**/
 void menu_principal(int contador_ESECS,int contador_ESTG,int contador_ESAD,int contador_ESTM,int contador_ESS);
 char opcao_genero(void);
-
-int menu_escolas(void); //MENU ESCOLAS OPCAO 1 NO MENU PRINCIPAL
+void menu_escolas(void); //MENU ESCOLAS OPCAO 1 NO MENU PRINCIPAL
 void menu_questionarios(void); //MENU QUESTIONARIOS OPCAO 2 NO MENU PRINCIPAL
-
-
-
-
 void menu_principal_opcao(void);
-
 void menu_inquerito_idade(void); //MENU
 int menu_doencas(void);
-
-
 int menu_gravar_ficheiros(void);
-//FIM MENUS
+int menu_inserir_consultar_contacto_com_pessoa_infetada(void);
+void menu_inquerito_idade(void);
+int menu_opcao_idade();
+int menu_idade();
+int menu_inserir_consultar_idade();
+int menu_inserir_consultar_sintomas(void);
+int menu_inserir_sintomas();
+char menu_genero(void);
+int menu_opcao_doencas(void);
+void menu_ficheiros(void);
+char menu_opcao_genero(void);
+int menu_inserir_consultar_genero(void);
+int menu_tipo_de_participante(void);
+int menu_inserir_consultar_tipo_de_participante(void);
+char menu_opcao_contacto_com_pessoa_infetada(void);
+char menu_contacto_com_pessoa_infetada();
+int menu_inserir_consultar_local_residencia(void);
+int menu_doencas(void);
+/**FIM MENUS**/
 
-
+/**INICIO INSERIR**/
 int inserir_escola(t_escola escola[],int contadoridescola);
+int inserir_idade();
+char inserir_genero(t_questionario genero );
+int inserir_doencas();
+/**FIM INSERIR**/
+
+/**CONSULTAR/LISTAR**/
 void Consultar_escola(t_escola escola[]);
+void consultar_idade(t_questionario idade[]);
+void consultr_genero(void);
+void listar_sintomas();
+void consultar_sintomas(void);
+void consultar_doencas(void);
+/** FIM CONSULTAR/LISTAR**/
 
+/**FICHEIROS**/
+void gravar_idade_em_ficheiros(t_questionario idade[], int  gravar_ficheiro_idade);
+int ler_idade_em_ficheiros(t_questionario idade[]);
 
+void gravar_genero_em_ficheiros(t_questionario genero[], int gravar_ficheiro_genero);
+int ler_genero_em_ficheiros(t_questionario genero[]);
 
+void gravar_sintomas_em_ficheiro(t_questionario sintomas[], int gravar_ficheiro_sintomas);
+int ler_sintomas_em_ficheiro(t_questionario sintomas[]);
 
+void gravar_tipo_participante_em_ficheiros(t_questionario tipo_participante[], int gravar_ficheiro_tipo_de_participante);
+int ler_tipo_participante_em_ficheiros(t_questionario tipo_participante[]);
 
+void gravar_contacto_com_pessoa_infetada_em_ficheiros(t_questionario pessoa[], int gravar_ficheiro_tipo_de_participante);
+int ler_tipo_participante_em_ficheiros(t_questionario tipo_participante[]);
+/**FIM FICHEIROS**/
 
 //LER DADOS
 void ler_string();
 int ler_numero();
 //FIM LER DADOS
 
+
+
 int opcao_tipo_de_participante(void);
-int menu_inserir_consultar_contacto_com_pessoa_infetada(void);
+
 
 char local_residencia[TOTALQUESTIONARIOS];
 char tipo_participante[TOTALQUESTIONARIOS];         //SE È (DOCENTE,ESTUDANTE,FUNCIONÁRIO OU INVESTIGADOR)
@@ -107,80 +143,9 @@ char contacto_covid[TOTALQUESTIONARIOS];
 
 
 
-void menu_inquerito_idade(void);
-
-
-int inserir_idade();
-void consultar_idade(t_questionario idade[]);
-int menu_opcao_idade();
-int menu_idade();
-int menu_inserir_consultar_idade();
-void gravar_idade_em_ficheiros(t_questionario idade[], int  gravar_ficheiro_idade);
-int ler_idade_em_ficheiros(t_questionario idade[]);
-
-
-
-
-char inserir_genero(t_questionario genero );
-char menu_genero(void);
-void gravar_genero_em_ficheiros(t_questionario genero[], int gravar_ficheiro_genero);
-int ler_genero_em_ficheiros(t_questionario genero[]);
-char menu_opcao_genero(void);
-void consultr_genero(void);
-int menu_inserir_consultar_genero(void);
-
-
-
-
-
 int opcao_sintomas(void);
-int menu_inserir_consultar_sintomas(void);
-int menu_inserir_sintomas();
-void consultar_sintomas(void);
-void listar_sintomas();
-void gravar_sintomas_em_ficheiro(t_questionario sintomas[], int gravar_ficheiro_sintomas);
-int ler_sintomas_em_ficheiro(t_questionario sintomas[]);
-
-
-int menu_opcao_doencas(void);
-int inserir_doencas();
-void consultar_doencas(void);
-
-
-
-
-
-
-
-void menu_ficheiros(void);
-
-
-
-
-int menu_tipo_de_participante(void);
-void gravar_tipo_participante_em_ficheiros(t_questionario tipo_participante[], int gravar_ficheiro_tipo_de_participante);
-int ler_tipo_participante_em_ficheiros(t_questionario tipo_participante[]);
-int menu_inserir_consultar_tipo_de_participante(void);
-
-
-
-char menu_opcao_contacto_com_pessoa_infetada(void);
-char menu_contacto_com_pessoa_infetada();
-void gravar_contacto_com_pessoa_infetada_em_ficheiros(t_questionario pessoa[], int gravar_ficheiro_tipo_de_participante);
-int ler_tipo_participante_em_ficheiros(t_questionario tipo_participante[]);
-
-
-
-int menu_inserir_consultar_local_residencia(void);
-int menu_doencas(void);
-
-
-
-
 
 int questionario1(void);
-
-
 
 
 
@@ -201,37 +166,8 @@ void limpar_consola()
 {
     printf("\n\n\n\n\n\n\n\n\n\n\n\n\n");
     fflush(stdin);
-
 }
-//FUNCAO MAIN
-int main()
-{
-    int idade;
-    menu_principal(contador_ESECS,contador_ESTG,contador_ESAD,contador_ESTM,contador_ESS);
-    menu_principal_opcao();
-    return 0;
-}
-void menu_principal(int contador_ESECS,int contador_ESTG,int contador_ESAD,int contador_ESTM,int contador_ESS)
-{
-    int opcao;
-    // 1-menu principal 2-menu inserir e consultar
-    printf("1- Registar e Consultar os dados das Escolas\n");
-    printf("2- Registar e Consultar os dados dos Questionarios\n\n");
-    printf("Estatisticas:\n");
-    printf("Total de inqueritos Respondido pos escolas:\n\n");
-    printf("\tESECS:%d/200 \n",contador_ESECS);
-    printf("\tESTG:%d/200 \n",contador_ESTG);
-    printf("\tESAD:%d/200 \n",contador_ESAD);
-    printf("\tESTM:%d/200 \n",contador_ESTM);
-    printf("\tESS:%d/200 \n\n",contador_ESS);
-    printf("3- Total de inqueritos por genero e idade\n"); //FAIXA ETARIA (18-23; 24-30; 31-40; 41-50; 51-65; +66)
-    printf("4 - Percentagem de inqueritos por nivel de risco de contagio\n");
-    printf("5 - Guardar ou Ler dados de ficheiro binario\n");
-    printf("6 - Sair\n");
-    printf("Introduza  uma opcao ->");
-    fflush(stdin);
-    scanf("%d", &opcao);
-}
+//FUNCAO LER STRING
 void ler_string(char txt[], char str[], int max_len)
 {
     printf("%s",txt);
@@ -239,7 +175,7 @@ void ler_string(char txt[], char str[], int max_len)
     fgets(str, max_len, stdin);
     limpar_consola();
 }
-
+//FUNCAO LER NUMERO
 int ler_numero(char text[])
 {
     int numero;
@@ -248,7 +184,7 @@ int ler_numero(char text[])
     scanf("%d", &numero);
     return numero;
 }
-
+//FUNCAO LER INTEIRO
 int lerInteiro (char mensagem[], int limMin, int limMax)
 {
     int num, resultado;
@@ -273,107 +209,7 @@ int lerInteiro (char mensagem[], int limMin, int limMax)
     while (resultado==0 || num < limMin || num > limMax);
     return num;
 }
-void menu_principal_opcao(void)
-{
-    int contadoridescola,escola, opcao,  op_escola;
-    do
-    {
-        switch(opcao)
-        {
-        case 1:
-            menu_escolas_opcao();
-        case 2:
-            questionario();
-            break;
-        case 3:
-
-            break;
-        case 4:
-
-            break;
-        case 5:
-
-            break;
-        case 6:
-
-            Sair();
-            break;
-        }
-    }
-    while(opcao!=1 || opcao!=2 || opcao!=3 || opcao!=4 || opcao!=5 || opcao!=6);
-    return;
-}
-int questionario(void)
-{
-    int opcao;
-    do
-    {
-        fflush(stdin);
-        scanf("%d", &opcao);
-        switch(opcao)
-        {
-        case 1:
-            menu_idade();
-            break;
-        case 2:
-            menu_genero();
-            break;
-        case 3:
-
-            break;
-        case 4:
-            menu_tipo_de_participante();
-            break;
-        case 5:
-            menu_sintomas();
-            break;
-        case 6:
-            menu_doencas();
-        }
-    }
-    while(opcao != 0);
-    return opcao;
-}
-void menu_inquerito_idade(void)
-{
-    printf("********Faixa Etaria********\n");
-    printf("Idade entre 18 - 23\n");
-    printf("Idade entre 24 - 30\n");
-    printf("Idade entre 31 - 40\n");
-    printf("Idade entre 41 - 50\n");
-    printf("Idade entre 51 - 65\n");
-    printf("Idade +66\n");
-}
-
-
-int menu_escolas_opcao(t_escola escola[], int contadoridescola[] )
-{
-    int opcao, intro_aux_escola;
-    menu_escolas();
-    do
-    {
-        printf("Introduza uma opcao->\n");
-        scanf("%d", &opcao);
-        fflush(stdin);
-
-        switch(opcao)
-        {
-        case 1:
-            intro_aux_escola=inserir_escola(escola, intro_aux_escola);
-            contadoridescola++;
-            break;
-        case 2:
-            Consultar_escola(escola);
-            break;
-        default:
-            printf("Opcao Invalida!\n");
-        }
-    }
-    while(opcao<1 || opcao>2);
-    return opcao;
-
-}
-
+//FUNCAO SAIR
 void Sair(void)
 {
     char confirmacao;
@@ -403,64 +239,108 @@ void Sair(void)
     return;
 }
 
-
-int Introduzir_Questionario(t_questionario questionario)
+//FUNCAO MAIN
+int main()
 {
-    //TODO: FAZER FUNÇÔES PARA ESTAS CENAS
-    printf("ID:\n");
-    printf("ID ESCOLA:\n");
-    printf("DATA:");
-    printf("HORA:\n");
-    printf("NIVEL CONTAGIO\n");
-    printf("IDADE:\n");
-    printf("Genero:\n");
-    printf("Local de residencia:\n");
-    printf("Tipo de participante\n");
-    printf("Temperatura\n");
-    printf("Esteve em contacto com alguem com covid-19?\n");
-    printf("Sintomas\n");
-    printf("Doenças\n");
-
-}
-int inserir_escola(t_escola escola[],int contadoridescola)
-{
-    int i=0;
-    //TODO: VALIDAÇÕES e fazer debug
-    //escola[i].idescola=contadoridescola;
-    ler_string("Introduza as iniciais da escola (ESECS,ESTG,ESAD,ESTM,ESS)\n",escola[contadoridescola].nomeescola,MAX_TEXTO);
-
-    ler_string("Introduza a localidade da escola\n",escola[contadoridescola].localidade,MAX_TEXTO);
-
-    contadoridescola++;
-    printf("%d",&i );
-    return contadoridescola;
+    int idade;
+    menu_principal(contador_ESECS,contador_ESTG,contador_ESAD,contador_ESTM,contador_ESS);
+    menu_principal_opcao();
+    return 0;
 }
 
-void Consultar_escola(t_escola escola[])
+/**COMEÇO DOS MENUS**/
+void menu_principal(int contador_ESECS,int contador_ESTG,int contador_ESAD,int contador_ESTM,int contador_ESS)
 {
-    //TODO VER SE FUNCIONA
-    int i;
-    i = lerInteiro("Insira o id a pesquisar: ",1,strlen(escola));
-
-
-    printf("ID:%d\n",escola[i].idescola);
-    printf("Nome da escola:%s\n",escola[i].nomeescola);
-    printf("Localidade da escola:%s\n",escola[i].localidade);
-
-
+    // 1-menu principal 2-menu inserir e consultar
+    printf("1- Registar e Consultar os dados das Escolas\n");
+    printf("2- Registar e Consultar os dados dos Questionarios\n\n");
+    printf("Estatisticas:\n");
+    printf("Total de inqueritos Respondido pos escolas:\n\n");
+    printf("\tESECS:%d/200 \n",contador_ESECS);
+    printf("\tESTG:%d/200 \n",contador_ESTG);
+    printf("\tESAD:%d/200 \n",contador_ESAD);
+    printf("\tESTM:%d/200 \n",contador_ESTM);
+    printf("\tESS:%d/200 \n\n",contador_ESS);
+    printf("3- Total de inqueritos por genero e idade\n"); //FAIXA ETARIA (18-23; 24-30; 31-40; 41-50; 51-65; +66)
+    printf("4 - Percentagem de inqueritos por nivel de risco de contagio\n");
+    printf("5 - Guardar ou Ler dados de ficheiro binario\n");
+    printf("6 - Sair\n");
+    printf("Introduza  uma opcao ->");
 }
 
-void Listar_escolas(t_escola escola[])
+void menu_principal_opcao(void)
 {
-
-    //TODO VER SE FUNCIONA
-    int i;
-    for(i=1; i<6; i++)
+    int contadoridescola,escola, opcao,  op_escola;
+    scanf("%d",&opcao);
+    do
     {
-        printf("ID:%d\n",escola[i].idescola);
-        printf("Nome da escola:%c\n",escola[i].nomeescola);
-        printf("Localidade da escola:%c\n",escola[i].localidade);
+        switch(opcao){
+        case 1:menu_escolas_opcao();
+        break;
+        case 2:questionario();
+            break;
+        case 3:
+
+            break;
+        case 4:
+
+            break;
+        case 5:
+
+            break;
+        case 6:Sair();
+            break;
+        }
     }
+    while(opcao!=1 || opcao!=2 || opcao!=3 || opcao!=4 || opcao!=5 || opcao!=6);
+    return;
+
+}
+
+void menu_inquerito_idade(void)
+{
+    printf("********Faixa Etaria********\n");
+    printf("Idade entre 18 - 23\n");
+    printf("Idade entre 24 - 30\n");
+    printf("Idade entre 31 - 40\n");
+    printf("Idade entre 41 - 50\n");
+    printf("Idade entre 51 - 65\n");
+    printf("Idade +66\n");
+}
+void menu_escolas(void)
+{
+    printf("1 - Introduzir 1 nova escola\n");
+    printf("2 - Consultar escolas por id\n");
+    printf("3 - Listar escolas\n");
+    printf("Introduza 1 opcao ->");
+
+}
+int menu_escolas_opcao(t_escola escola[], int contadoridescola[] )
+{
+    int opcao, intro_aux_escola;
+    menu_escolas();
+    do
+    {
+        scanf("%d", &opcao);
+        fflush(stdin);
+
+        switch(opcao)
+        {
+        case 1:
+            contadoridescola=inserir_escola(escola,contadoridescola);
+
+            break;
+        case 2:
+            Consultar_escola(escola);
+            break;
+        case 3:
+            Listar_escolas(escola);
+        default:
+            printf("Opcao Invalida!\n");
+        }
+    }
+    while(opcao<1 || opcao>3);
+    return opcao;
 
 }
 
@@ -474,19 +354,24 @@ int menu_inserir_consultar_idade()
         printf("Introduza uma opcao\n");
         fflush(stdin);
         scanf("%d", &opcao_idade);
-    }
-    while (opcao_idade > 0 && opcao_idade <= 2);
-    {
-        printf("Opcao Invalida\n");
-    }
+
+        if(opcao_idade<=0 || opcao_idade>2){
+         printf("Opcao Invalida\n");
+        }
+
+    }while (opcao_idade <= 0 || opcao_idade > 2);
+
+
+
 return opcao_idade;
 }
+
 int menu_idade()
 {
     int opcao ;
     do
-
     {
+
         opcao = menu_inserir_consultar_idade();
 
         switch(opcao)
@@ -500,62 +385,13 @@ int menu_idade()
             //consultar_idade();
             break;
         }
-    }
-    while (opcao < 0 ||opcao >= 2 );
-    {
-        printf("Opcao sssinvalida");
-    }
+
+    }while (opcao <= 0 ||opcao >2 );
+
+
+
 return opcao;
 }
-void gravar_idade_em_ficheiros(t_questionario idade[], int  gravar_ficheiro_idade)
-{
-    FILE * ficheiro_idade_gravar;
-    ficheiro_idade_gravar = fopen ("idade.dat", "wb");
-
-    if(ficheiro_idade_gravar = NULL)
-    {
-        printf("Impossivel criar ficheiro");
-    }
-    else
-    {
-        fwrite(&gravar_ficheiro_idade, sizeof(int),1, ficheiro_idade_gravar);
-        fwrite(idade,sizeof(t_questionario),200, ficheiro_idade_gravar);
-        fclose(ficheiro_idade_gravar);
-    }
-}
-int ler_idade_em_ficheiros(t_questionario idade[])
-{
-    int ler_idade;
-    FILE * ficheiro_idade_ler;
-    ficheiro_idade_ler = fopen("idade.dat", "rb");
-    if(ficheiro_idade_ler == NULL)
-    {
-        printf("Impossível ler ficheiros");
-    }
-    else
-    {
-        fwrite(&ler_idade, sizeof(int),1, ficheiro_idade_ler);
-        fread(idade, sizeof(t_questionario), ler_idade, ficheiro_idade_ler);
-        fclose(ficheiro_idade_ler);
-    }
-    return ler_idade;
-}
-int inserir_idade()
-{
-    int idade;
-    do
-    {
-        printf("Introduza a sua idade\n");
-        fflush(stdin);
-        scanf("%d", &idade);
-    }
-    while(idade <= 18);
-
-
-    printf("A sua idade e igual ou superior a 18\n");
-return idade;
-}
-void consultar_idade();
 
 char menu_genero(void)
 {
@@ -574,6 +410,7 @@ char menu_genero(void)
     }
     return opcao_genero;
 }
+
 char menu_opcao_genero(void)
 {
     char sexo;
@@ -607,41 +444,6 @@ int menu_inserir_consultar_genero(void)
         fflush(stdin);
     }
     while(opcao_genero );
-}
-
-void gravar_genero_em_ficheiros(t_questionario genero[], int gravar_ficheiro_genero)
-{
-    FILE * ficheiro_genero_gravar;
-    ficheiro_genero_gravar = fopen("genero.dat", "wb");
-
-    if(ficheiro_genero_gravar == NULL)
-    {
-        printf("Impossivel criar ficheiro\n");
-    }
-    else
-    {
-        fwrite(&gravar_ficheiro_genero, sizeof(int ),1, ficheiro_genero_gravar);
-        fwrite(genero, sizeof(int),200, ficheiro_genero_gravar);
-        fclose(ficheiro_genero_gravar);
-    }
-}
-int ler_genero_em_ficheiros(t_questionario genero[])
-{
-    int ler_genero;
-    FILE * ficheiro_genero_ler;
-
-    if(ficheiro_genero_ler == NULL)
-    {
-        printf("Impossivel ler ficheiro\n");
-
-    }
-    else
-    {
-        fwrite(&ler_genero, sizeof(int),1, ficheiro_genero_ler);
-        fread(genero,sizeof(t_questionario), ler_genero,ficheiro_genero_ler);
-        fclose(ficheiro_genero_ler);
-    }
-    return ler_genero;
 }
 
 int menu_tipo_de_participante(void)
@@ -704,40 +506,6 @@ int menu_inserir_consultar_tipo_de_participante(void)
     }
 }
 
-void gravar_tipo_participante_em_ficheiros(t_questionario tipo_participante[], int gravar_ficheiro_tipo_de_participante)
-{
-    FILE * ficheiro_tipo_participante_gravar;
-    ficheiro_tipo_participante_gravar = fopen("tipo participante.dat", "wb");
-    if(ficheiro_tipo_participante_gravar == NULL)
-    {
-        printf("Impossivel criar ficheiro\n");
-    }
-    else
-    {
-        fwrite(&gravar_ficheiro_tipo_de_participante, sizeof(int),1, ficheiro_tipo_participante_gravar);
-        fwrite(tipo_participante, sizeof(t_questionario),200,ficheiro_tipo_participante_gravar);
-        fclose(ficheiro_tipo_participante_gravar);
-    }
-}
-
-int ler_tipo_participante_em_ficheiros(t_questionario tipo_participante[])
-{
-    int ler_tipo_participante;
-    FILE * ficheiro_tipo_participante_ler;
-    ficheiro_tipo_participante_ler = fopen("tipo participante", "rb");
-    if(ficheiro_tipo_participante_ler == NULL)
-    {
-        printf("Impossivel ler ficheiro\n");
-    }
-    else
-    {
-        fwrite(&ler_tipo_participante, sizeof(int),1, ficheiro_tipo_participante_ler);
-        fread(tipo_participante,sizeof(t_questionario), ler_tipo_participante,ficheiro_tipo_participante_ler);
-        fclose(ficheiro_tipo_participante_ler);
-    }
-    return ler_tipo_participante;
-}
-
 char menu_contacto_com_pessoa_infetada(void)
 {
     printf("(S)im\n");
@@ -785,6 +553,7 @@ int menu_sintomas(void)
     fflush(stdin);
 }
 
+
 int  menu_inserir_consultar_sintomas(void)
 {
     int opcao_sintomas;
@@ -830,38 +599,7 @@ int menu_inserir_consultar_doencas(void)
     printf("\nOpcao-> ");
     fflush(stdin);
 }
-void gravar_sintomas_em_ficheiro(t_questionario sintomas[], int gravar_sintomas_em_ficheiro)
-{
-    FILE * ficheiro_sintomas_gravar;
-    ficheiro_sintomas_gravar = fopen("sintomas.dat", "wb");
-    if(ficheiro_sintomas_gravar == NULL)
-    {
-        printf("Impossivel criar ficheiro");
-    }
-    else
-    {
-        fwrite(&gravar_sintomas_em_ficheiro, sizeof(int),1, ficheiro_sintomas_gravar);
-        fwrite(sintomas, sizeof(t_questionario),200,ficheiro_sintomas_gravar);
-        fclose(ficheiro_sintomas_gravar);
-    }
-}
-int ler_sintomas_em_ficheiro(t_questionario sintomas[])
-{
 
-    int ler_sintomas;
-    FILE * ficheiro_sintomas_ler;
-    ficheiro_sintomas_ler = fopen("sintomas.dat", "rb");
-    if(ficheiro_sintomas_ler == NULL)
-    {
-        printf("Impossivel ler ficheiro");
-    }
-    else
-    {
-        fwrite(&ler_sintomas,sizeof(int),1,ficheiro_sintomas_ler);
-        fread(sintomas,sizeof(t_questionario),200,ficheiro_sintomas_ler);
-        fclose(ficheiro_sintomas_ler);
-    }
-}
 int menu_inserir_consultar_local_residencia(void)
 {
     int opcao_loca_de_residencia;
@@ -909,6 +647,7 @@ void menu_questionario(void)
      fflush(stdin);*/
 
 }
+
 int menu_gravar_ficheiros()
 {
     int opcao;
@@ -924,8 +663,269 @@ int menu_gravar_ficheiros()
 }
 
 
+/** FIM DOS MENUS**/
 
-int menu_escolas(void)
+int questionario(void)
 {
+    int opcao;
+    do
+    {
+        fflush(stdin);
+        scanf("%d", &opcao);
+        switch(opcao)
+        {
+        case 1:
+            menu_idade();
+            break;
+        case 2:
+            menu_genero();
+            break;
+        case 3:
+
+            break;
+        case 4:
+            menu_tipo_de_participante();
+            break;
+        case 5:
+            menu_sintomas();
+            break;
+        case 6:
+            menu_doencas();
+        }
+    }
+    while(opcao != 0);
+    return opcao;
+}
+
+
+/** FUNCOES INSERIR**/
+int inserir_escola(t_escola escola[],int contadoridescola)
+{
+    int i=0;
+    //TODO: VALIDAÇÕES e fazer debug
+    escola[contadoridescola].idescola=contadoridescola;//TEM BUG
+   // ler_string("Introduza as iniciais da escola (ESECS,ESTG,ESAD,ESTM,ESS)\n",escola[contadoridescola].nomeescola,MAX_TEXTO);
+    printf(escola[contadoridescola].idescola);//TEM BUG
+
+    gets(escola[contadoridescola].nomeescola);
+
+    ler_string("Introduza a localidade da escola\n",escola[contadoridescola].localidade,MAX_TEXTO);
+
+    contadoridescola++;
+    printf("%d",&i );
+    return contadoridescola;
+}
+
+int inserir_idade()
+{
+    int idade;
+    do
+    {
+        printf("Introduza a sua idade\n");
+        fflush(stdin);
+        scanf("%d", &idade);
+        if(idade <18){
+            printf("Tem que ter idade igual ou superior a 18 anos\n");
+        }
+
+    }
+    while(idade < 18);
+
+
+    ;
+return idade;
+}
+/** FIM FUNCOES INSERIR**/
+
+/**FUNCOES CONSULTAR/LISTAR**/
+void Consultar_escola(t_escola escola[])//FALTA TESTAR
+{
+    //TODO VER SE FUNCIONA
+    int i;
+    i = lerInteiro("Insira o id a pesquisar: ",1,strlen(escola));
+
+
+    printf("ID:%d\n",escola[i].idescola);
+    printf("Nome da escola:%s\n",escola[i].nomeescola);
+    printf("Localidade da escola:%s\n",escola[i].localidade);
+
 
 }
+
+
+void Listar_escolas(t_escola escola[])
+{
+
+    //TODO VER SE FUNCIONA
+    int i;
+    for(i=1; i<6; i++)
+    {
+        printf("ID:%d\n",escola[i].idescola);
+        printf("Nome da escola:%c\n",escola[i].nomeescola);
+        printf("Localidade da escola:%c\n",escola[i].localidade);
+    }
+
+}
+/**FIM FUNCOES CONSULTAR/LISTAR**/
+
+
+/**FUNCOES PARA FICHEIROS**/
+void gravar_idade_em_ficheiros(t_questionario idade[], int  gravar_ficheiro_idade)
+{
+    FILE * ficheiro_idade_gravar;
+    ficheiro_idade_gravar = fopen ("idade.dat", "wb");
+
+    if(ficheiro_idade_gravar = NULL)
+    {
+        printf("Impossivel criar ficheiro");
+    }
+    else
+    {
+        fwrite(&gravar_ficheiro_idade, sizeof(int),1, ficheiro_idade_gravar);
+        fwrite(idade,sizeof(t_questionario),200, ficheiro_idade_gravar);
+        fclose(ficheiro_idade_gravar);
+    }
+}
+
+int ler_idade_em_ficheiros(t_questionario idade[])
+{
+    int ler_idade;
+    FILE * ficheiro_idade_ler;
+    ficheiro_idade_ler = fopen("idade.dat", "rb");
+    if(ficheiro_idade_ler == NULL)
+    {
+        printf("Impossível ler ficheiros");
+    }
+    else
+    {
+        fwrite(&ler_idade, sizeof(int),1, ficheiro_idade_ler);
+        fread(idade, sizeof(t_questionario), ler_idade, ficheiro_idade_ler);
+        fclose(ficheiro_idade_ler);
+    }
+    return ler_idade;
+}
+
+void gravar_genero_em_ficheiros(t_questionario genero[], int gravar_ficheiro_genero)
+{
+    FILE * ficheiro_genero_gravar;
+    ficheiro_genero_gravar = fopen("genero.dat", "wb");
+
+    if(ficheiro_genero_gravar == NULL)
+    {
+        printf("Impossivel criar ficheiro\n");
+    }
+    else
+    {
+        fwrite(&gravar_ficheiro_genero, sizeof(int ),1, ficheiro_genero_gravar);
+        fwrite(genero, sizeof(int),200, ficheiro_genero_gravar);
+        fclose(ficheiro_genero_gravar);
+    }
+}
+
+int ler_genero_em_ficheiros(t_questionario genero[])
+{
+    int ler_genero;
+    FILE * ficheiro_genero_ler;
+
+    if(ficheiro_genero_ler == NULL)
+    {
+        printf("Impossivel ler ficheiro\n");
+
+    }
+    else
+    {
+        fwrite(&ler_genero, sizeof(int),1, ficheiro_genero_ler);
+        fread(genero,sizeof(t_questionario), ler_genero,ficheiro_genero_ler);
+        fclose(ficheiro_genero_ler);
+    }
+    return ler_genero;
+}
+
+void gravar_tipo_participante_em_ficheiros(t_questionario tipo_participante[], int gravar_ficheiro_tipo_de_participante)
+{
+    FILE * ficheiro_tipo_participante_gravar;
+    ficheiro_tipo_participante_gravar = fopen("tipo participante.dat", "wb");
+    if(ficheiro_tipo_participante_gravar == NULL)
+    {
+        printf("Impossivel criar ficheiro\n");
+    }
+    else
+    {
+        fwrite(&gravar_ficheiro_tipo_de_participante, sizeof(int),1, ficheiro_tipo_participante_gravar);
+        fwrite(tipo_participante, sizeof(t_questionario),200,ficheiro_tipo_participante_gravar);
+        fclose(ficheiro_tipo_participante_gravar);
+    }
+}
+
+int ler_tipo_participante_em_ficheiros(t_questionario tipo_participante[])
+{
+    int ler_tipo_participante;
+    FILE * ficheiro_tipo_participante_ler;
+    ficheiro_tipo_participante_ler = fopen("tipo participante", "rb");
+    if(ficheiro_tipo_participante_ler == NULL)
+    {
+        printf("Impossivel ler ficheiro\n");
+    }
+    else
+    {
+        fwrite(&ler_tipo_participante, sizeof(int),1, ficheiro_tipo_participante_ler);
+        fread(tipo_participante,sizeof(t_questionario), ler_tipo_participante,ficheiro_tipo_participante_ler);
+        fclose(ficheiro_tipo_participante_ler);
+    }
+    return ler_tipo_participante;
+}
+
+void gravar_sintomas_em_ficheiro(t_questionario sintomas[], int gravar_sintomas_em_ficheiro)
+{
+    FILE * ficheiro_sintomas_gravar;
+    ficheiro_sintomas_gravar = fopen("sintomas.dat", "wb");
+    if(ficheiro_sintomas_gravar == NULL)
+    {
+        printf("Impossivel criar ficheiro");
+    }
+    else
+    {
+        fwrite(&gravar_sintomas_em_ficheiro, sizeof(int),1, ficheiro_sintomas_gravar);
+        fwrite(sintomas, sizeof(t_questionario),200,ficheiro_sintomas_gravar);
+        fclose(ficheiro_sintomas_gravar);
+    }
+}
+
+int ler_sintomas_em_ficheiro(t_questionario sintomas[])
+{
+    int ler_sintomas;
+    FILE * ficheiro_sintomas_ler;
+    ficheiro_sintomas_ler = fopen("sintomas.dat", "rb");
+    if(ficheiro_sintomas_ler == NULL)
+    {
+        printf("Impossivel ler ficheiro");
+    }
+    else
+    {
+        fwrite(&ler_sintomas,sizeof(int),1,ficheiro_sintomas_ler);
+        fread(sintomas,sizeof(t_questionario),200,ficheiro_sintomas_ler);
+        fclose(ficheiro_sintomas_ler);
+    }
+}
+
+/**FIM FUNCOES FICHEIROS**/
+
+int Introduzir_Questionario(t_questionario questionario)
+{
+    //TODO: FAZER FUNÇÔES PARA ESTAS CENAS
+    printf("ID:\n");
+    printf("ID ESCOLA:\n");
+    printf("DATA:");
+    printf("HORA:\n");
+    printf("NIVEL CONTAGIO\n");
+    printf("IDADE:\n");
+    printf("Genero:\n");
+    printf("Local de residencia:\n");
+    printf("Tipo de participante\n");
+    printf("Temperatura\n");
+    printf("Esteve em contacto com alguem com covid-19?\n");
+    printf("Sintomas\n");
+    printf("Doenças\n");
+
+}
+

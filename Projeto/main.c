@@ -50,7 +50,14 @@ void limpar_consola(void);
 //FUNCAO QUE FAZ SAIR DO PROGRAMA
 void Sair(void);
 
+<<<<<<< Updated upstream
 /** COMEï¿½O MENUS**/
+=======
+/** COMEÇO MENUS**/
+void Listar_escolas();
+int menu_escolas_opcao(t_escola escola[], int contadoridescola[] );
+int questionario(void);
+>>>>>>> Stashed changes
 void menu_principal(int contador_ESECS,int contador_ESTG,int contador_ESAD,int contador_ESTM,int contador_ESS);
 char opcao_genero(void);
 void menu_escolas(void); //MENU ESCOLAS OPCAO 1 NO MENU PRINCIPAL
@@ -101,25 +108,9 @@ void consultar_doencas(void);
 
 /**FICHEIROS**/
 //guardar tudo num so ficheiro e meter tudo num vetor
-void gravar_idade_em_ficheiros(t_questionario idade[], int  gravar_ficheiro_idade);
-int ler_idade_em_ficheiros(t_questionario idade[]);
-
-void gravar_genero_em_ficheiros(t_questionario genero[], int gravar_ficheiro_genero);
-int ler_genero_em_ficheiros(t_questionario genero[]);
-
-void gravar_sintomas_em_ficheiro(t_questionario sintomas[], int gravar_ficheiro_sintomas);
-int ler_sintomas_em_ficheiro(t_questionario sintomas[]);
-
-void gravar_tipo_participante_em_ficheiros(t_questionario tipo_participante[], int gravar_ficheiro_tipo_de_participante);
-int ler_tipo_participante_em_ficheiros(t_questionario tipo_participante[]);
-
-void gravar_contacto_com_pessoa_infetada_em_ficheiros(t_questionario pessoa[], int gravar_ficheiro_tipo_de_participante);
-int ler_tipo_participante_em_ficheiros(t_questionario tipo_participante[]);
 
 
 
-void gravar_temperatura_em_ficheiro(t_questionario temperatura[], int gravar_ficheiro_temperatura);
-int  ler_temperatura_em_ficheiro(t_questionario[]);
 /**FIM FICHEIROS**/
 
 //LER DADOS
@@ -328,11 +319,13 @@ char menu_genero(void)
     do
 
     {
+        opcao_genero = menu_inserir_consultar_genero();
         printf("(M)asculino\n");
         printf("(F)emenino\n");
         printf("Introduza uma opcao\n");
         fflush(stdin);
         scanf("%c", &opcao_genero);
+        menu_opcao_genero();
     }
     while(opcao_genero != 0);
     {
@@ -346,7 +339,6 @@ char menu_opcao_genero(void)
     char sexo;
     do
     {
-        sexo = menu_inserir_consultar_genero();
         scanf("%c",&sexo);
         fflush(stdin);
         switch(sexo)
@@ -387,6 +379,7 @@ int menu_tipo_de_participante(void)
     int opcao_tipo_de_participante;
     do
     {
+
         printf("1.Docente\n");
         printf("2.Estudante\n");
         printf("3.Funcionario\n");
@@ -549,7 +542,7 @@ int menu_inserir_consultar_doencas(void)
         printf("\nOpcao-> ");
         fflush(stdin);
     }
-    while(opcao_sintomas < 0 || opcao_sintomas > 2);
+    while(opcao_doencas < 0 || opcao_doencas > 2);
 }
 
 int menu_inserir_consultar_local_residencia(void)
@@ -579,7 +572,7 @@ int  menu_inserir_consultar_escolas()
         printf("Introduza uma opcao->\n");
         fflush(stdin);
         scanf("%d", &opcao_escolas);
-        if(opcao_ficheiros<=0 || opcao_ficheiros2)
+        if(opcao_ficheiros<=0 || opcao_ficheiros)
         {
             printf("Opcao invalida\n");
         }
@@ -601,7 +594,7 @@ int menu_inserir_consultar_ficheiros()
         printf("Introduza uma opcao\n");
         fflush(stdin);
         scanf("%d", &opcao_ficheiros);
-        if(opcao_ficheiros<=0 || opcao_ficheiros2)
+        if(opcao_ficheiros<=0 || opcao_ficheiros)
         {
             printf("Opcao invalida\n");
         }
@@ -743,6 +736,7 @@ void Listar_escolas(t_escola escola[])
 }
 /**FIM FUNCOES CONSULTAR/LISTAR**/
 
+<<<<<<< Updated upstream
 
 /**FUNCOES PARA FICHEIROS**/
 void gravar_idade_em_ficheiros(t_questionario idade[], int  gravar_ficheiro_idade)
@@ -885,6 +879,8 @@ int ler_sintomas_em_ficheiro(t_questionario sintomas[])
 
 /**FIM FUNCOES FICHEIROS**/
 
+=======
+>>>>>>> Stashed changes
 int Introduzir_Questionario(t_questionario questionario)
 {
     //TODO: FAZER FUNï¿½ï¿½ES PARA ESTAS CENAS

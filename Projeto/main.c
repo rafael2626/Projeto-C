@@ -270,12 +270,11 @@ void menu_principal(int contador_ESECS,int contador_ESTG,int contador_ESAD,int c
 
 void menu_principal_opcao(void)
 {
-    int contadoridescola,escola, opcao,  op_escola;
+    int contadoridescola=0,escola, opcao,  op_escola;
     scanf("%d",&opcao);
-    do
-    {
+    do{
         switch(opcao){
-        case 1:menu_escolas_opcao();
+        case 1:menu_escolas_opcao(escola,contadoridescola);
         break;
         case 2:questionario();
             break;
@@ -291,10 +290,8 @@ void menu_principal_opcao(void)
         case 6:Sair();
             break;
         }
-    }
-    while(opcao!=1 || opcao!=2 || opcao!=3 || opcao!=4 || opcao!=5 || opcao!=6);
+   }while(opcao!=1 || opcao!=2 || opcao!=3 || opcao!=4 || opcao!=5 || opcao!=6);
     return;
-
 }
 
 void menu_inquerito_idade(void)
@@ -315,7 +312,7 @@ void menu_escolas(void)
     printf("Introduza 1 opcao ->");
 
 }
-int menu_escolas_opcao(t_escola escola[], int contadoridescola[] )
+int menu_escolas_opcao(t_escola *escola, int contadoridescola )
 {
     int opcao, intro_aux_escola;
     menu_escolas();
@@ -699,18 +696,20 @@ int questionario(void)
 
 
 /** FUNCOES INSERIR**/
-int inserir_escola(t_escola escola[],int contadoridescola)
+int inserir_escola(t_escola *escola,int contadoridescola)
 {
     int i=0;
     //TODO: VALIDAÇÕES e fazer debug
     escola[contadoridescola].idescola=contadoridescola;//TEM BUG
    // ler_string("Introduza as iniciais da escola (ESECS,ESTG,ESAD,ESTM,ESS)\n",escola[contadoridescola].nomeescola,MAX_TEXTO);
-    printf(escola[contadoridescola].idescola);//TEM BUG
 
-    gets(escola[contadoridescola].nomeescola);
+      printf("\nId da escoal: %d",escola[contadoridescola].idescola);//TEM BUG
+      ler_string("Introduza as Iniciais da escola\n",escola[contadoridescola].nomeescola,MAX_TEXTO);
+      gets(escola[contadoridescola].nomeescola);
+      printf("\nNome Inserido: %s",escola[contadoridescola].nomeescola);
 
-    ler_string("Introduza a localidade da escola\n",escola[contadoridescola].localidade,MAX_TEXTO);
-
+      ler_string("Introduza a localidade da escola\n",escola[contadoridescola].localidade,MAX_TEXTO);
+        printf("\nNome Inserido: %s",escola[contadoridescola].localidade);
     contadoridescola++;
     printf("%d",&i );
     return contadoridescola;
@@ -731,8 +730,6 @@ int inserir_idade()
     }
     while(idade < 18);
 
-
-    ;
 return idade;
 }
 /** FIM FUNCOES INSERIR**/

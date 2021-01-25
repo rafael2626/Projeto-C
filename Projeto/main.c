@@ -11,35 +11,35 @@
 typedef struct questionario  //ESTRUTURA LIMITE DE 1000 QUESTIONARIOS 200 POR ESCOLA
 {
     //guardar nivel de contagio
-    int id_questionario[TOTALQUESTIONARIOS];
-    int id_escola[TOTALQUESTIONARIOS];
-
-    int idade[TOTALQUESTIONARIOS];
-    char genero[TOTALQUESTIONARIOS];
-    char local_residencia[TOTALQUESTIONARIOS];
-    char tipo_participante[TOTALQUESTIONARIOS];         //SE ï¿½ (DOCENTE,ESTUDANTE,FUNCIONï¿½RIO OU INVESTIGADOR)
-    char contacto_com_pessoa[TOTALQUESTIONARIOS];            //SE A PRESSOA TEVE EM CONTACTO COM ALGUEM COM COVID (SIM/NAO/DESCONHECIDO)
-    char sintomas[TOTALQUESTIONARIOS][MAX_TEXTO];       //QUE SINTOMAS A PESSOA A SER QUESTIONADA TEM (DIFICULDADE RESPIRATORIA,,DOR MUSCULAR,FADIGA,FALTA DE PALADAR,Nï¿½USEAS e TOSSE)
-    char doencas[TOTALQUESTIONARIOS][MAX_TEXTO];  //DOENï¿½AS DE RISCO (AUTOIMUNE,CANCRO,CARDIOVASCULAR,DIABETES,HIPERTENSï¿½O,OBESIDADE,OBESIDADE,RENAL,RESPIRATï¿½RIA)
-    int temperatura[TOTALQUESTIONARIOS];
+    int id_questionario;
+    int id_escola;
+    t_horario data_hora;
+    int idade;
+    char genero;
+    char local_residencia;
+    char tipo_participante;         //SE ï¿½ (DOCENTE,ESTUDANTE,FUNCIONï¿½RIO OU INVESTIGADOR)
+    char contacto_com_pessoa;            //SE A PRESSOA TEVE EM CONTACTO COM ALGUEM COM COVID (SIM/NAO/DESCONHECIDO)
+    char sintomas[MAX_TEXTO];       //QUE SINTOMAS A PESSOA A SER QUESTIONADA TEM (DIFICULDADE RESPIRATORIA,,DOR MUSCULAR,FADIGA,FALTA DE PALADAR,Nï¿½USEAS e TOSSE)
+    char doencas[MAX_TEXTO];  //DOENï¿½AS DE RISCO (AUTOIMUNE,CANCRO,CARDIOVASCULAR,DIABETES,HIPERTENSï¿½O,OBESIDADE,OBESIDADE,RENAL,RESPIRATï¿½RIA)
+    int temperatura;
 } t_questionario;
 
 // struct data e hora
 typedef struct horario
 {
-    int dia[TOTALQUESTIONARIOS];
-    int mes[TOTALQUESTIONARIOS];
-    int ano[TOTALQUESTIONARIOS];
-    int hora[TOTALQUESTIONARIOS];
-    int minutos[TOTALQUESTIONARIOS];
+    int dia;
+    int mes;
+    int ano;
+    int hora;
+    int minutos;
 } t_horario;
 
 
 typedef struct escola
 {
     int idescola;
-    char nomeescola[TOTALESCOLAS];   //ESCOLAS (ESECS,ESTG,ESAD,ESTM,ESS)
-    char localidade[TOTALESCOLAS];
+    char nomeescola];   //ESCOLAS (ESECS,ESTG,ESAD,ESTM,ESS)
+    char localidade;
 } t_escola;
 
 
@@ -50,15 +50,15 @@ void limpar_consola(void);
 //FUNCAO QUE FAZ SAIR DO PROGRAMA
 void Sair(void);
 
-<<<<<<< Updated upstream
+
 /** COMEï¿½O MENUS**/
-=======
+
 /** COMEÇO MENUS**/
 void Listar_escolas();
-int menu_escolas_opcao(t_escola escola[], int contadoridescola[] );
-int questionario(void);
->>>>>>> Stashed changes
-void menu_principal(int contador_ESECS,int contador_ESTG,int contador_ESAD,int contador_ESTM,int contador_ESS);
+int menu_escolas_opcao(t_escola escola[], int contadoridescola);
+int questionario(contador_questionario);
+
+int menu_principal(int contador_ESECS,int contador_ESTG,int contador_ESAD,int contador_ESTM,int contador_ESS);
 char opcao_genero(void);
 void menu_escolas(void); //MENU ESCOLAS OPCAO 1 NO MENU PRINCIPAL
 void menu_questionarios(void); //MENU QUESTIONARIOS OPCAO 2 NO MENU PRINCIPAL
@@ -69,7 +69,7 @@ int menu_gravar_ficheiros(void);
 int menu_inserir_consultar_contacto_com_pessoa_infetada(void);
 void menu_inquerito_idade(void);
 int menu_opcao_idade();
-int menu_idade();
+int menu_idade(t_questionario idade[]);
 int menu_inserir_consultar_idade();
 int menu_inserir_consultar_sintomas(void);
 int menu_inserir_sintomas();
@@ -119,7 +119,7 @@ int ler_numero();
 //FIM LER DADOS
 
 
-
+/**
 int opcao_tipo_de_participante(void);
 
 
@@ -129,8 +129,7 @@ char contacto_covid[TOTALQUESTIONARIOS];
 
 
 int opcao_sintomas(void);
-
-int questionario1(void);
+**/
 
 //ESTAS VARIAVEIS SERVEM PARA CONTAR OS TESTES DE CADA ESCOLA NOS QUESTIONARIOS;
 //funcao main
@@ -148,48 +147,23 @@ int main()
     int contador_ESAD=0;
     int contador_ESTM=0;
     int contador_ESS=0;
+    int contador_questionario=0;
+    t_questionario questionarios[TOTALQUESTIONARIOS];
+    t_escola escolas[TOTALESCOLAS];
 
 //CONNTADOR ID ESCOLA
-    int contadoridescola=1;
 
     int idade;
-    menu_principal(contador_ESECS,contador_ESTG,contador_ESAD,contador_ESTM,contador_ESS);
-    menu_principal_opcao();
-    return 0;
-}
-
-/**COMEï¿½O DOS MENUS**/
-void menu_principal(int contador_ESECS,int contador_ESTG,int contador_ESAD,int contador_ESTM,int contador_ESS)
-{
-    // 1-menu principal 2-menu inserir e consultar
-    printf("1 - Registar e Consultar os dados das Escolas\n");
-    printf("2 - Registar e Consultar os dados dos Questionarios\n\n");
-    printf("Estatisticas:\n");
-    printf("Total de inqueritos Respondido pos escolas:\n\n");
-    printf("\tESECS:%d/200 \n",contador_ESECS);
-    printf("\tESTG:%d/200 \n",contador_ESTG);
-    printf("\tESAD:%d/200 \n",contador_ESAD);
-    printf("\tESTM:%d/200 \n",contador_ESTM);
-    printf("\tESS:%d/200 \n\n",contador_ESS);
-    printf("3 - Total de inqueritos por genero e idade\n"); //FAIXA ETARIA (18-23; 24-30; 31-40; 41-50; 51-65; +66)
-    printf("4 - Percentagem de inqueritos por nivel de risco de contagio\n");
-    printf("5 - Guardar ou Ler dados de ficheiro binario\n");
-    printf("6 - Sair\n");
-    printf("Introduza  uma opcao ->");
-}
-
-void menu_principal_opcao(void)
-{
-    int contadoridescola=0,escola, opcao,  op_escola;
-    scanf("%d",&opcao);
-    do{
-        switch(opcao){
-        case 1:menu_escolas_opcao(escola,contadoridescola);
+        int contadoridescola=0,escola, opcao,  op_escola;
+    do
+        {
+        switch(opcao)
+        {
+        case 1:
+            menu_escolas_opcao(escolas,contadoridescola);
         break;
-        case 2:questionario();
-            break;
         case 2:
-            questionario();
+            questionario(questionarios,contador_questionario);
             break;
         case 3:
 
@@ -205,7 +179,38 @@ void menu_principal_opcao(void)
             break;
         }
    }while(opcao!=1 || opcao!=2 || opcao!=3 || opcao!=4 || opcao!=5 || opcao!=6);
-    return;
+
+    return 0;
+}
+
+/**COMEïCO DOS MENUS**/
+int menu_principal(int contador_ESECS,int contador_ESTG,int contador_ESAD,int contador_ESTM,int contador_ESS)
+{
+    int opcao;
+    do{
+    // 1-menu principal 2-menu inserir e consultar
+    printf("1 - Registar e Consultar os dados das Escolas\n");
+    printf("2 - Registar e Consultar os dados dos Questionarios\n\n");
+    printf("Estatisticas:\n");
+    printf("Total de inqueritos Respondido pos escolas:\n\n");
+    printf("\tESECS:%d/200 \n",contador_ESECS);
+    printf("\tESTG:%d/200 \n",contador_ESTG);
+    printf("\tESAD:%d/200 \n",contador_ESAD);
+    printf("\tESTM:%d/200 \n",contador_ESTM);
+    printf("\tESS:%d/200 \n\n",contador_ESS);
+    printf("3 - Total de inqueritos por genero e idade\n"); //FAIXA ETARIA (18-23; 24-30; 31-40; 41-50; 51-65; +66)
+    printf("4 - Percentagem de inqueritos por nivel de risco de contagio\n");
+    printf("5 - Guardar ou Ler dados de ficheiro binario\n");
+    printf("6 - Sair\n");
+    printf("Introduza  uma opcao ->");
+    scanf("%d",&opcao);
+    }while(opcao!=1 || opcao!=2 || opcao!=3 || opcao!=4 || opcao!=5 || opcao!=6);
+    return opcao;
+}
+
+void menu_principal_opcao(void)
+{
+
 }
 
 void menu_inquerito_idade(void)
@@ -226,7 +231,7 @@ void menu_escolas(void)
     printf("Introduza 1 opcao ->");
 
 }
-int menu_escolas_opcao(t_escola *escola, int contadoridescola )
+int menu_escolas_opcao(t_escola escola[], int contadoridescola )
 {
     int opcao, intro_aux_escola;
     menu_escolas();
@@ -275,7 +280,7 @@ int menu_inserir_consultar_idade()
     return opcao_idade;
 }
 
-int menu_idade()
+int menu_idade(t_questionario idade[])
 {
     int opcao_idade ;
     do
@@ -285,7 +290,7 @@ int menu_idade()
         switch(opcao_idade)
         {
         case 1:
-            inserir_idade();
+            inserir_idade(idade);
             //inserir++;
             break;
         case 2:
@@ -296,23 +301,7 @@ int menu_idade()
     while (opcao_idade <= 0 ||opcao_idade >2 );
     return opcao_idade;
 }
-int inserir_idade()
-{
-    int idade;
-    do
-    {
-        printf("Introduza a sua idade\n");
-        fflush(stdin);
-        scanf("%d", &idade);
-        if(idade <18)
-        {
-            printf("Tem que ter idade igual ou superior a 18 anos\n");
-        }
 
-    }
-    while(idade < 18);
-    return idade;
-}
 char menu_genero(void)
 {
     char opcao_genero;
@@ -572,7 +561,7 @@ int  menu_inserir_consultar_escolas()
         printf("Introduza uma opcao->\n");
         fflush(stdin);
         scanf("%d", &opcao_escolas);
-        if(opcao_ficheiros<=0 || opcao_ficheiros)
+        if(opcao_escolas<=0 || opcao_escolas>2)
         {
             printf("Opcao invalida\n");
         }
@@ -634,7 +623,7 @@ int menu_gravar_ficheiros()
     while(opcao != 0);
 }
 /** FIM DOS MENUS**/
-int questionario(void)
+int questionario(t_questionario ,int contador_questionario)
 {
     int opcao;
     do
@@ -644,7 +633,7 @@ int questionario(void)
         switch(opcao)
         {
         case 1:
-            menu_idade();
+           menu_idade(idade,contador_questionario);
             break;
         case 2:
             menu_genero();
@@ -667,7 +656,7 @@ int questionario(void)
 }
 
 /** FUNCOES INSERIR**/
-int inserir_escola(t_escola *escola,int contadoridescola)
+int inserir_escola(t_escola escola[],int contadoridescola)
 {
     int i=0;
     //TODO: VALIDAï¿½ï¿½ES e fazer debug
@@ -686,14 +675,13 @@ int inserir_escola(t_escola *escola,int contadoridescola)
     return contadoridescola;
 }
 
-int inserir_idade()
+int inserir_idade(t_questionario idade[])
 {
-    int idade;
     do
     {
         printf("Introduza a sua idade\n");
         fflush(stdin);
-        scanf("%d", &idade);
+        scanf("%d", &t_questionario idade[]);
         if(idade <18){
             printf("Tem que ter idade igual ou superior a 18 anos\n");
         }

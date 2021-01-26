@@ -13,7 +13,7 @@ typedef struct questionario  //ESTRUTURA LIMITE DE 1000 QUESTIONARIOS 200 POR ES
     //guardar nivel de contagio
     int id_questionario;
     int id_escola;
-    t_horario data_hora;
+    struct t_horario data_hora;
     int idade;
     char genero;
     char local_residencia;
@@ -38,7 +38,7 @@ typedef struct horario
 typedef struct escola
 {
     int idescola;
-    char nomeescola];   //ESCOLAS (ESECS,ESTG,ESAD,ESTM,ESS)
+    char nomeescola;   //ESCOLAS (ESECS,ESTG,ESAD,ESTM,ESS)
     char localidade;
 } t_escola;
 
@@ -56,7 +56,7 @@ void Sair(void);
 /** COMEÇO MENUS**/
 void Listar_escolas();
 int menu_escolas_opcao(t_escola escola[], int contadoridescola);
-int questionario(contador_questionario);
+int questionario(t_questionario questionarios[],int contador_questionario);
 
 int menu_principal(int contador_ESECS,int contador_ESTG,int contador_ESAD,int contador_ESTM,int contador_ESS);
 char opcao_genero(void);
@@ -88,7 +88,7 @@ int menu_doencas(void);
 
 /**INICIO INSERIR**/
 int inserir_escola(t_escola escola[],int contadoridescola);
-int inserir_idade(t_questionario idade[]);
+int inserir_idade(t_questionario questionarios[]);
 char inserir_genero(t_questionario genero[]);
 char inserir_doencas(t_questionario doencas[]);
 char inserir_tipo_de_participante(t_questionario tipo_participante[]);
@@ -208,10 +208,6 @@ int menu_principal(int contador_ESECS,int contador_ESTG,int contador_ESAD,int co
     return opcao;
 }
 
-void menu_principal_opcao(void)
-{
-
-}
 
 void menu_inquerito_idade(void)
 {
@@ -223,6 +219,7 @@ void menu_inquerito_idade(void)
     printf("Idade entre 51 - 65\n");
     printf("Idade +66\n");
 }
+
 void menu_escolas(void)
 {
     printf("1 - Introduzir 1 nova escola\n");
@@ -231,7 +228,8 @@ void menu_escolas(void)
     printf("Introduza 1 opcao ->");
 
 }
-int menu_escolas_opcao(t_escola escola[], int contadoridescola )
+
+int menu_escolas_opcao(t_escola escolas[], int contadoridescola )
 {
     int opcao, intro_aux_escola;
     menu_escolas();
@@ -243,14 +241,14 @@ int menu_escolas_opcao(t_escola escola[], int contadoridescola )
         switch(opcao)
         {
         case 1:
-            contadoridescola=inserir_escola(escola,contadoridescola);
+            contadoridescola=inserir_escola(escolas,contadoridescola);
 
             break;
         case 2:
-            Consultar_escola(escola);
+            Consultar_escola(escolas);
             break;
         case 3:
-            Listar_escolas(escola);
+            Listar_escolas(escolas);
         default:
             printf("Opcao Invalida!\n");
         }
@@ -428,6 +426,7 @@ int menu_inserir_consultar_tipo_de_participante(void)
     }
     return opcao_tipo_participante;
 }
+
 char menu_contacto_com_pessoa_infetada(void)
 {
     printf("(S)im\n");
@@ -623,7 +622,7 @@ int menu_gravar_ficheiros()
     while(opcao != 0);
 }
 /** FIM DOS MENUS**/
-int questionario(t_questionario ,int contador_questionario)
+int questionario(t_questionario questionarios[],int contador_questionario)
 {
     int opcao;
     do
@@ -633,7 +632,7 @@ int questionario(t_questionario ,int contador_questionario)
         switch(opcao)
         {
         case 1:
-           menu_idade(idade,contador_questionario);
+           menu_idade(questionarios);
             break;
         case 2:
             menu_genero();
@@ -675,14 +674,14 @@ int inserir_escola(t_escola escola[],int contadoridescola)
     return contadoridescola;
 }
 
-int inserir_idade(t_questionario idade[])
+int inserir_idade(t_questionario questionarios[])
 {
     do
     {
         printf("Introduza a sua idade\n");
         fflush(stdin);
-        scanf("%d", &t_questionario idade[]);
-        if(idade <18){
+        scanf("%d", &questionarios.idade[1]);
+        if(questionarios.idade[1] <18){
             printf("Tem que ter idade igual ou superior a 18 anos\n");
         }
 
@@ -724,7 +723,6 @@ void Listar_escolas(t_escola escola[])
 }
 /**FIM FUNCOES CONSULTAR/LISTAR**/
 
-<<<<<<< Updated upstream
 
 /**FUNCOES PARA FICHEIROS**/
 void gravar_idade_em_ficheiros(t_questionario idade[], int  gravar_ficheiro_idade)
@@ -867,8 +865,8 @@ int ler_sintomas_em_ficheiro(t_questionario sintomas[])
 
 /**FIM FUNCOES FICHEIROS**/
 
-=======
->>>>>>> Stashed changes
+
+
 int Introduzir_Questionario(t_questionario questionario)
 {
     //TODO: FAZER FUNï¿½ï¿½ES PARA ESTAS CENAS
